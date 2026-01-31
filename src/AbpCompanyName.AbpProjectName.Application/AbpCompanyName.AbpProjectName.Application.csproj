@@ -8,13 +8,13 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>AbpCompanyName.AbpProjectName</RootNamespace>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbpCompanyName.AbpProjectName.Core\AbpCompanyName.AbpProjectName.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.EntityFrameworkCore" Version="10.2.0" />
-    <PackageReference Include="Abp.AutoMapper" Version="10.2.0" />
+    <PackageReference Include="Abp.EntityFrameworkCore" Version="10.3.0" />
+    <PackageReference Include="Abp.AutoMapper" Version="10.3.0" />
   </ItemGroup>
 </Project>
