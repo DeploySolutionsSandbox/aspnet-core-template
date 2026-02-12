@@ -2,8 +2,6 @@ using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.TestBase;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore;
-using Castle.MicroKernel.Registration;
-using Castle.Windsor.MsDependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,35 +14,49 @@ namespace AbpCompanyName.AbpProjectName.Tests;
     )]
 public class AbpProjectNameTestModule : AbpModule
 {
+    private readonly IServiceCollection _services;
+    private ServiceProvider _serviceProvider;
+
+    public AbpProjectNameTestModule()
+    {
+        _services = new ServiceCollection();
+    }
+
     public override void PreInitialize()
     {
-        Configuration.UnitOfWork.IsTransactional = false; //EF Core InMemory DB does not support transactions.
+        Configuration.UnitOfWork.IsTransactional = false; // EF Core InMemory DB does not support transactions.
         SetupInMemoryDb();
     }
 
     public override void Initialize()
     {
-        IocManager.RegisterAssemblyByConvention(typeof(AbpProjectNameTestModule).GetAssembly());
+        _serviceProvider = _services.BuildServiceProvider();
+        RegisterServices();
     }
 
     private void SetupInMemoryDb()
     {
-        var services = new ServiceCollection()
-            .AddEntityFrameworkInMemoryDatabase();
-
-        var serviceProvider = WindsorRegistrationHelper.CreateServiceProvider(
-            IocManager.IocContainer,
-            services
-        );
+        _services.AddEntityFrameworkInMemoryDatabase();
 
         var builder = new DbContextOptionsBuilder<AbpProjectNameDbContext>();
-        builder.UseInMemoryDatabase("Test").UseInternalServiceProvider(serviceProvider);
+        builder.UseInMemoryDatabase("Test").UseInternalServiceProvider(_services.BuildServiceProvider());
 
-        IocManager.IocContainer.Register(
-            Component
-                .For<DbContextOptions<AbpProjectNameDbContext>>()
-                .Instance(builder.Options)
-                .LifestyleSingleton()
-        );
+        _services.AddSingleton(builder.Options);
+    }
+
+    private void RegisterServices()
+    {
+        // Register application services manually or via reflection if needed.
+        var assembly = typeof(AbpProjectNameTestModule).GetAssembly();
+        foreach (var type in assembly.GetTypes())
+        {
+            if (type.IsClass && !type.IsAbstract)
+            {
+                foreach (var iface in type.GetInterfaces())
+                {
+                    _services.AddTransient(iface, type);
+                }
+            }
+        }
     }
 }
