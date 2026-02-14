@@ -1,0 +1,100 @@
+<Project>
+    <PropertyGroup>
+      <Company>Deploy Software Solutions, inc.</Company>
+      <Copyright>2018-2026 Deploy Software Solutions, inc.</Copyright>
+      <Authors>Nicholas Kellett</Authors>
+      <TargetFramework>net10.0</TargetFramework>
+      <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+      <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+      <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+      <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+      <NoWarn>$(NoWarn);CS1591</NoWarn>
+      <PackageIcon>icon.png</PackageIcon>
+      <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageProjectUrl>https://github.com/DeploySolutions/launchpad-shared</PackageProjectUrl>
+      <IncludeSymbols>true</IncludeSymbols>
+      <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+      <RepositoryType>git</RepositoryType>
+      <RepositoryUrl>https://github.com/DeploySolutions/launchpad-shared</RepositoryUrl>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' ">
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\..\LICENSE.md" Link="LICENSE.md">
+            <PackagePath></PackagePath>
+            <Pack>True</Pack>
+        </None>
+        <None Include="..\..\icon.png" Link="icon.png">
+            <PackagePath></PackagePath>
+            <Pack>True</Pack>
+        </None>
+        <None Include="..\..\README.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+  <!-- Custom Target to Copy Debug Assemblies -->
+  <Target Name="CopyDebugAssemblies" AfterTargets="Build">
+    <PropertyGroup>
+      <!-- Define the build folder relative to the solution directory -->
+      <BuildOutputFolder>$(SolutionDir)build\$(MSBuildProjectName)</BuildOutputFolder>
+      <SharedBuildOutputFolder>$(SolutionDir)build\shared</SharedBuildOutputFolder>
+    </PropertyGroup>
+    <ItemGroup>
+      <!-- Include the Debug assembly and its metadata -->
+      <DebugAssemblies Include="$(OutputPath)*.*" />
+    </ItemGroup>
+    <MakeDir Directories="$(BuildOutputFolder)" />
+    <MakeDir Directories="$(SharedBuildOutputFolder)" />
+    <Copy SourceFiles="@(DebugAssemblies)" DestinationFolder="$(BuildOutputFolder)" />
+    <Copy SourceFiles="@(DebugAssemblies)" DestinationFolder="$(SharedBuildOutputFolder)" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="Abp">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AutoMapper">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AspNetCore">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.AspNetCore.dll</HintPath>
+    </Reference>
+
+    <Reference Include="Abp.AspNetCore.OpenIddict">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.AspNetCore.OpenIddict.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.AspNetCore.SignalR">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.AspNetCore.SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.EntityFrameworkCore">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.EntityFramework.Common">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.EntityFramework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.FluentValidation">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Web.Common">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Castle.Log4Net">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.Castle.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.TestBase">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.TestBase.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.Zero.Common">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.Zero.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.ZeroCore">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.ZeroCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Abp.ZeroCore.EntityFrameworkCore">
+      <HintPath>..\..\..\..\deploysolutionssandbox\aspnetboilerplate\build\shared\Abp.ZeroCore.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

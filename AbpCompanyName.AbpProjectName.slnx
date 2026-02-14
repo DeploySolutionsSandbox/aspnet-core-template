@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/solution_items/">
+    <File Path="common.props" />
+    <File Path="configureawait.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="NuGet.Config" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="src/AbpCompanyName.AbpProjectName.Application/AbpCompanyName.AbpProjectName.Application.csproj" />
     <Project Path="src/AbpCompanyName.AbpProjectName.Core/AbpCompanyName.AbpProjectName.Core.csproj" />
@@ -7,6 +13,5 @@
   </Folder>
   <Folder Name="/test/">
     <Project Path="test/AbpCompanyName.AbpProjectName.Tests/AbpCompanyName.AbpProjectName.Tests.csproj" />
-    <Project Path="test/AbpCompanyName.AbpProjectName.Web.Tests/AbpCompanyName.AbpProjectName.Web.Tests.csproj" />
   </Folder>
 </Solution>

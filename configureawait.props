@@ -1,0 +1,11 @@
+<Project>
+  <ItemGroup>
+    <PackageVersion Include="ConfigureAwait.Fody">
+        <PrivateAssets>all</PrivateAssets>
+      </PackageVersion>
+      <PackageVersion Include="Fody">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageVersion>
+  </ItemGroup>
+</Project>
