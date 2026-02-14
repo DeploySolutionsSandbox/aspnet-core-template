@@ -13,6 +13,7 @@
     <PackageVersion Include="Deploy.LaunchPad.AWS" Version="10.21.0" />
     <PackageVersion Include="Deploy.LaunchPad.AWS.Abp" Version="10.21.0" />
     <PackageVersion Include="Deploy.LaunchPad.Python" Version="10.21.0" />
+    <PackageVersion Include="Serilog" Version="4.3.1" />
   </ItemGroup>
   <!-- ABP Packages Starts -->
   <!--

@@ -1,14 +1,18 @@
 ﻿using Abp.AspNetCore;
 using Abp.Castle.Logging.Log4Net;
 using Abp.EntityFrameworkCore;
+using AbpCompanyName.AbpProjectName.Configuration;
 using AbpCompanyName.AbpProjectName.EntityFrameworkCore;
 using Castle.Facilities.Logging;
+using Castle.Services.Logging.SerilogIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 using System;
 
 namespace AbpCompanyName.AbpProjectName.Web.Startup
@@ -37,15 +41,14 @@ namespace AbpCompanyName.AbpProjectName.Web.Startup
             });
 
             //Configure Abp and Dependency Injection
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .CreateLogger();
             return services.AddAbp<AbpProjectNameWebModule>(options =>
             {
                 //Configure Log4Net logging
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-                    f => f.UseAbpLog4Net().WithConfig(
-                        _hostingEnvironment.IsDevelopment()
-                            ? "log4net.config"
-                            : "log4net.Production.config"
-                        )
+                    f => f.LogUsing(new SerilogFactory(Log.Logger))
                 );
             });
         }
