@@ -31,9 +31,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Castle.Core-Serilog" />
-    <PackageReference Include="Microsoft.Extensions.Logging" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
     <PackageReference Include="Castle.Core" />
     <PackageReference Include="Castle.Windsor" />
     <PackageReference Include="Castle.LoggingFacility" />
@@ -44,6 +42,8 @@
     <PackageReference Include="Serilog.Sinks.Console" />
     <PackageReference Include="Serilog.Sinks.File" />
     <!--
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />    
     <PackageReference Include="Castle.LoggingFacility.MsLogging"  />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet"  />
