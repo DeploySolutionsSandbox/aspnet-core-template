@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
+  <Import Project="..\..\common.props" />
+  <Import Project="..\..\configureawait.props" />
+
+  <PropertyGroup>   
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>AbpCompanyName.AbpProjectName.Core</AssemblyName>
     <PackageId>AbpCompanyName.AbpProjectName.Core</PackageId>
@@ -8,14 +10,15 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>AbpCompanyName.AbpProjectName</RootNamespace>
-    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\SourceFiles\*.json" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
   <ItemGroup>
+    <!--
     <PackageReference Include="Abp" Version="10.3.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="10.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.2" />
+    -->
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables"  />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
   </ItemGroup>
 </Project>

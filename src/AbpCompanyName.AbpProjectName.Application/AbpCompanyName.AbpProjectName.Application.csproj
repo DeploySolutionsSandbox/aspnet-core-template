@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props" />
+  <Import Project="..\..\configureawait.props" />
+
   <PropertyGroup>
-    <Version>1.0.0.0</Version>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>AbpCompanyName.AbpProjectName.Application</AssemblyName>
     <PackageId>AbpCompanyName.AbpProjectName.Application</PackageId>
@@ -8,13 +10,14 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>AbpCompanyName.AbpProjectName</RootNamespace>
-    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbpCompanyName.AbpProjectName.Core\AbpCompanyName.AbpProjectName.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <!--
     <PackageReference Include="Abp.EntityFrameworkCore" Version="10.3.0" />
     <PackageReference Include="Abp.AutoMapper" Version="10.3.0" />
+    -->
   </ItemGroup>
 </Project>
